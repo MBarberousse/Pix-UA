@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pix à l'UA - Renforcez vos compétences numériques</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ua-blue: #002E5D;
+            --ua-light-blue: #5DADE2;
+            --ua-gray: #F5F5F5;
+            --ua-dark-gray: #333333;
+            --pix-blue: #2E86C1;
+            --pix-yellow: #F7DC6F;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--ua-dark-gray);
+            margin: 0;
+            padding: 0;
+            background-color: var(--ua-gray);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--ua-blue), var(--ua-light-blue));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: repeating-linear-gradient(
+                90deg,
+                rgba(255,255,255,0.2) 0px,
+                rgba(255,255,255,0.2) 2px,
+                transparent 2px,
+                transparent 10px
+            );
+        }
+
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            height: 90px;
+            width: auto;
+        }
+
+        .logo-ua {
+           
+        }
+
+        .logo-pix {
+            height: 80px;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 19px;
+            margin: 0;
+            font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .header-decoration {
+            width: 100px;
+            height: 4px;
+            background: white;
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        h2 {
+            color: var(--ua-blue);
+            font-size: 26px;
+            margin: 40px 0 20px 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--ua-light-blue);
+        }
+
+        h3 {
+            color: var(--ua-blue);
+            font-size: 22px;
+            margin: 25px 0 15px 0;
+        }
+
+        .main-content {
+            padding: 30px 20px;
+        }
+
+        .highlight-box {
+            background-color: rgba(93, 173, 226, 0.1);
+            border-left: 5px solid var(--ua-light-blue);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--ua-blue);
+            color: white;
+            padding: 13px 28px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 12px 10px 12px 0;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            background-color: var(--ua-light-blue);
+        }
+
+        .btn:hover {
+            background-color: #001E3D;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            color: var(--ua-dark-gray);
+            background-color: #f8f9fa;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .contact-item {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--ua-blue);
+            padding: 15px 20px;
+            border-radius: 0 5px 5px 0;
+            transition: transform 0.2s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-name {
+            font-weight: 600;
+            color: var(--ua-blue);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .contact-email {
+            margin: 0;
+        }
+
+        .contact-email a {
+            color: var(--ua-blue);
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+        }
+
+        .contact-email a:hover {
+            text-decoration: underline;
+            color: var(--ua-light-blue);
+        }
+
+        .resource-section {
+            margin: 35px 0;
+            padding: 20px;
+            background-color: rgba(93, 173, 226, 0.05);
+            border-radius: 5px;
+            border-left: 4px solid var(--ua-light-blue);
+        }
+
+        .resource-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--ua-blue);
+            margin-top: 0;
+        }
+
+        .resource-section h3 i {
+            color: var(--ua-light-blue);
+            font-size: 20px;
+        }
+
+        .resource-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0 10px 0;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid var(--ua-light-blue);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--ua-blue);
+        }
+
+        .card p {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .logos {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resource-links {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logos">
+                <img src="pix.png" alt="Logo Pix" class="logo logo-pix">
+                <img src="ua.png" alt="Logo Université Angers" class="logo logo-ua">
+                
+            </div>
+            <div class="header-content">
+                <!--<h1>Pix à l'Université d'Angers</h1>
+                <div class="header-decoration"></div>-->
+                <p class="subtitle">Un outil pour évaluer et renforcer vos compétences numériques, accessible à tous les agents de l'Université d'Angers</p>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <section>
+                <div class="highlight-box">
+                    <h2>Testez Pix sans inscription</h2>
+                    <p>Découvrez Pix en répondant à quelques questions ou explorez un module d'apprentissage sur l'IA en seulement 10 minutes.</p>
+                    <div class="resource-links">
+                        <a href="https://app.pix.fr/courses/recif2CZqh4EQvGX8" target="_blank" class="btn">Essayez Pix en 7 questions</a>
+                        <a href="https://app.pix.fr/modules/cc0cbab7/ia-dit-ia/details" target="_blank" class="btn">Module IA (niveau Novice)</a>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Parcours disponibles après inscription</h2>
+                <p><strong>Astuce</strong> : Votre compte Pix vous suit tout au long de votre vie. Utilisez une adresse mail pérenne pour le créer (pas nécessairement votre adresse universitaire). Vous pouvez également suivre ces parcours depuis un compte Pix existant.</p>
+
+                <article class="card">
+                    <h3>🔍 Parcours "Peut-on faire confiance aux IA génératives ?"</h3>
+                    <p>Un parcours pour questionner les limites de l'intelligence artificielle générative : deepfakes, hallucinations, biais... Apprenez à exercer votre esprit critique face aux contenus générés par les IA.</p>
+                    <a href="#" target="_blank" class="btn">Accéder au parcours</a>
+                </article>
+
+                <article class="card">
+                    <h3>🛠️ Parcours "Utiliser l'IA générative de façon efficace et éclairée"</h3>
+                    <p>Découvrez l'essentiel sur l'IA générative : comment l'utiliser efficacement tout en étant conscient de ses atouts et de ses limites (hallucinations, biais).</p>
+                    <a href="#" target="_blank" class="btn">Accéder au parcours</a>
+                </article>
+
+                <article class="card">
+                    <h3>🧠 Parcours "Décrypter le fonctionnement et les enjeux de l'IA"</h3>
+                    <p>Comprenez la définition de l'IA, ses domaines d'application, son fonctionnement, et ses enjeux, notamment en matière d'impact environnemental.</p>
+                    <a href="#" target="_blank" class="btn">Accéder au parcours</a>
+                </article>
+
+                <div class="highlight-box">
+                    <p><strong>Note</strong> : Ces parcours Pix sont des nouveautés. Leur niveau s'arrête actuellement au niveau "indépendant". Restez informé(e) des mises à jour via Moodle ou la communauté UA et Moi.</p>
+                </div>
+                 <div class="resource-section">
+                    <h3><i class="fas fa-book"></i> Approfondir les parcours IA</h3>
+                    <p>Pour en savoir plus sur les parcours spécifiques à l'IA :</p>
+                    <div class="resource-links">
+                        <a href="https://pix.fr/competences-intelligence-artificielle" target="_blank" class="btn btn-secondary">Référentiel cadre Pix pour l'IA</a>
+                        <a href="https://cloud.pix.fr/s/JRrGTRd7YHAqyQq?dir=/&editing=false&openfile=true" target="_blank" class="btn btn-secondary">Notice de déploiement des Parcours Apprenants IA</a>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Contacter votre correspondant Pix</h2>
+                <p>Besoin d'aide ou d'informations complémentaires ? Contactez le correspondant Pix de votre composante :</p>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-name">Faculté de Droit, Économie, Gestion</div>
+                        <div class="contact-email">
+                            <a href="mailto:ludovic.galisson-veille@univ-angers.fr">ludovic.galisson-veille@univ-angers.fr</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-name">Esthua</div>
+                        <div class="contact-email">
+                            <a href="mailto:frederic.cackowski@univ-angers.fr">frederic.cackowski@univ-angers.fr</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-name">Faculté de Santé</div>
+                        <div class="contact-email">
+                            <a href="mailto:michel.barberousse@univ-angers.fr">michel.barberousse@univ-angers.fr</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-name">Faculté des Lettres</div>
+                        <div class="contact-email">
+                            <a href="mailto:nicolas.nivol@univ-angers.fr">nicolas.nivol@univ-angers.fr</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-name">Faculté des Sciences</div>
+                        <div class="contact-email">
+                            <a href="mailto:fabien.garreau@univ-angers.fr">fabien.garreau@univ-angers.fr</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-name">IUT</div>
+                        <div class="contact-email">
+                            <a href="mailto:stephane.chauvin@univ-angers.fr">stephane.chauvin@univ-angers.fr</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-name">Polytech</div>
+                        <div class="contact-email">
+                            <a href="mailto:alain.godon@univ-angers.fr">alain.godon@univ-angers.fr</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-name">Direction de la Formation Continue</div>
+                        <div class="contact-email">
+                            <a href="mailto:eric.schrafstetter@univ-angers.fr">eric.schrafstetter@univ-angers.fr</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Pour aller plus loin</h2>
+
+                <div class="resource-section">
+                    <h3><i class="fas fa-user-graduate"></i> Des parcours adaptés à vos besoins</h3>
+                    <p>Avec Pix, concevez des parcours de formation sur mesure, adaptés à vos besoins, vos projets ou vos défis professionnels.</p>
+
+                    <p>Que vous souhaitiez :</p>
+                    <ul style="list-style-type: none; padding-left: 0; margin: 20px 0 25px 0;">
+                        <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--ua-blue); font-size: 18px;">•</span>
+                            <strong>Développer des compétences ciblées</strong> pour vous ou votre équipe
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--ua-blue); font-size: 18px;">•</span>
+                            <strong>Relever un défi professionnel</strong> en lien avec vos missions
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 25px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--ua-blue); font-size: 18px;">•</span>
+                            <strong>Explorer un nouveau domaine</strong> pour monter en expertise
+                        </li>
+                    </ul>
+
+                    <p>Pix vous offre la possibilité de <strong>construire des parcours personnalisés</strong>, parfaitement alignés sur vos objectifs.</p>
+
+                    <p><strong>Comment procéder ?</strong></p>
+                    <ol style="margin: 20px 0 25px 25px;">
+                        <li style="margin-bottom: 8px;">Identifiez vos besoins ou ceux de votre équipe.</li>
+                        <li style="margin-bottom: 8px;">Sélectionnez les compétences à renforcer dans Pix.</li>
+                        <li style="margin-bottom: 8px;">Collaborez avec <a href="#contact" style="color: var(--ua-blue); font-weight: bold;">votre correspondant Pix local</a> pour affiner votre parcours.</li>
+                    </ol>
+
+                    <p>Une opportunité pour apprendre ensemble et progresser à votre rythme !</p>
+                </div>
+
+                <div class="resource-section">
+                    <h3><i class="fas fa-robot"></i> Ressources complémentaires</h3>
+                    <p>Explorez ces ressources pour découvrir les parcours existants :</p>
+                    <div class="resource-links">
+                        <a href="https://cloud.pix.fr/s/ACGBMidZo5caQYx?dir=/&editing=false&openfile=true" target="_blank" class="btn btn-secondary">Liste des parcours prédéfinis Pix</a>
+                        <a href="https://cloud.pix.fr/s/73rZD5P27yr35PM" target="_blank" class="btn btn-secondary">Parcours Pix pour la Fonction Publique d'État</a>
+                    </div>
+                </div>
+
+               
+            </section>
+        </div>
+
+        <footer>
+            <p><a href="mailto:michel.barberousse@univ-angers.fr" style="color: var(--ua-blue); text-decoration: none;">michel.barberousse@univ-angers.fr</a> | Université d'Angers | © 2026</p>
+        </footer>
+    </div>
+</body>
+</html>
