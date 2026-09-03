@@ -487,8 +487,20 @@
     const referer = document.referrer;
     alert("Referer: " + referer); // Affiche le Referer dans une boîte de dialogue
         // Domaine autorisé
-        const DOMAINE_AUTORISE = "moodle.univ-angers.fr";
+        const DOMAINE_AUTORISE = "moodle.univ-angers";
 
+        function checkCookie() {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'provenance' && value === 'moodle.univ-angers') {
+            alert("Cookie trouvé: " + name + "=" + value); // Affiche le cookie s'il existe
+            return true;
+        }
+    }
+    alert("Cookie non trouvé"); // Affiche un message si le cookie n'existe pas
+    return false;
+}
         // Vérifier si l'utilisateur provient du domaine autorisé
         function checkReferer() {
             const referer = document.referrer;
@@ -505,7 +517,7 @@
             const cookies = document.cookie.split(';');
             for (let cookie of cookies) {
                 const [name, value] = cookie.trim().split('=');
-                if (name === 'provenance' && value === 'moodle.univ-angers.fr') {
+                if (name === 'provenance' && value === 'moodle.univ-angers') {
                     return true;
                 }
             }
