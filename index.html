@@ -73,7 +73,7 @@
         }
 
         .logo-ua {
-           
+
         }
 
         .logo-pix {
@@ -163,6 +163,18 @@
             background-color: #001E3D;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .btn-disabled:hover {
+            background-color: #cccccc;
+            transform: none;
         }
 
         footer {
@@ -264,6 +276,12 @@
             margin-bottom: 20px;
         }
 
+        .access-denied {
+            color: #d9534f;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
         @media (max-width: 768px) {
             .logos {
                 flex-direction: column;
@@ -300,11 +318,8 @@
             <div class="logos">
                 <img src="pix.png" alt="Logo Pix" class="logo logo-pix">
                 <img src="ua.png" alt="Logo Université Angers" class="logo logo-ua">
-                
             </div>
             <div class="header-content">
-                <!--<h1>Pix à l'Université d'Angers</h1>
-                <div class="header-decoration"></div>-->
                 <p class="subtitle">Un outil pour évaluer et renforcer vos compétences numériques, accessible à tous les agents de l'Université d'Angers</p>
             </div>
         </header>
@@ -328,25 +343,29 @@
                 <article class="card">
                     <h3>🔍 Parcours "Peut-on faire confiance aux IA génératives ?"</h3>
                     <p>Un parcours pour questionner les limites de l'intelligence artificielle générative : deepfakes, hallucinations, biais... Apprenez à exercer votre esprit critique face aux contenus générés par les IA.</p>
-                    <a href="#" target="_blank" class="btn">Accéder au parcours</a>
+                    <a id="parcours1" href="#" target="_blank" class="btn btn-disabled">Accéder au parcours</a>
+                    <p id="parcours1-error" class="access-denied">Ce lien est réservé aux agents de l'Université d'Angers.</p>
                 </article>
 
                 <article class="card">
                     <h3>🛠️ Parcours "Utiliser l'IA générative de façon efficace et éclairée"</h3>
                     <p>Découvrez l'essentiel sur l'IA générative : comment l'utiliser efficacement tout en étant conscient de ses atouts et de ses limites (hallucinations, biais).</p>
-                    <a href="#" target="_blank" class="btn">Accéder au parcours</a>
+                    <a id="parcours2" href="#" target="_blank" class="btn btn-disabled">Accéder au parcours</a>
+                    <p id="parcours2-error" class="access-denied">Ce lien est réservé aux agents de l'Université d'Angers.</p>
                 </article>
 
                 <article class="card">
                     <h3>🧠 Parcours "Décrypter le fonctionnement et les enjeux de l'IA"</h3>
                     <p>Comprenez la définition de l'IA, ses domaines d'application, son fonctionnement, et ses enjeux, notamment en matière d'impact environnemental.</p>
-                    <a href="#" target="_blank" class="btn">Accéder au parcours</a>
+                    <a id="parcours3" href="#" target="_blank" class="btn btn-disabled">Accéder au parcours</a>
+                    <p id="parcours3-error" class="access-denied">Ce lien est réservé aux agents de l'Université d'Angers.</p>
                 </article>
 
                 <div class="highlight-box">
                     <p><strong>Note</strong> : Ces parcours Pix sont des nouveautés. Leur niveau s'arrête actuellement au niveau "indépendant". Restez informé(e) des mises à jour via Moodle ou la communauté UA et Moi.</p>
                 </div>
-                 <div class="resource-section">
+
+                <div class="resource-section">
                     <h3><i class="fas fa-book"></i> Approfondir les parcours IA</h3>
                     <p>Pour en savoir plus sur les parcours spécifiques à l'IA :</p>
                     <div class="resource-links">
@@ -454,8 +473,6 @@
                         <a href="https://cloud.pix.fr/s/73rZD5P27yr35PM" target="_blank" class="btn btn-secondary">Parcours Pix pour la Fonction Publique d'État</a>
                     </div>
                 </div>
-
-               
             </section>
         </div>
 
@@ -463,5 +480,81 @@
             <p><a href="mailto:michel.barberousse@univ-angers.fr" style="color: var(--ua-blue); text-decoration: none;">michel.barberousse@univ-angers.fr</a> | Université d'Angers | © 2026</p>
         </footer>
     </div>
+
+    <!-- Script pour vérifier le Referer et activer les liens -->
+    <script>
+        // Domaine autorisé
+        const DOMAINE_AUTORISE = "univ-angers.fr";
+
+        // Vérifier si l'utilisateur provient du domaine autorisé
+        function checkReferer() {
+            const referer = document.referrer;
+            if (referer.includes(DOMAINE_AUTORISE)) {
+                // Définir un cookie valide 24h
+                document.cookie = "provenance=univ-angers; path=/; max-age=86400; SameSite=Lax";
+                return true;
+            }
+            return false;
+        }
+
+        // Vérifier si le cookie existe
+        function checkCookie() {
+            const cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                const [name, value] = cookie.trim().split('=');
+                if (name === 'provenance' && value === 'moodle.univ-angers.fr') {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Activer ou désactiver les liens en fonction du cookie
+        function updateLinks() {
+            const hasAccess = checkCookie();
+
+            const parcours1 = document.getElementById('parcours1');
+            const parcours2 = document.getElementById('parcours2');
+            const parcours3 = document.getElementById('parcours3');
+
+            const parcours1Error = document.getElementById('parcours1-error');
+            const parcours2Error = document.getElementById('parcours2-error');
+            const parcours3Error = document.getElementById('parcours3-error');
+
+            if (hasAccess) {
+                // Activer les liens
+                parcours1.href = "https://app.pix.fr/parcours/parcours1";
+                parcours1.classList.remove('btn-disabled');
+                parcours1Error.style.display = 'none';
+
+                parcours2.href = "https://app.pix.fr/parcours/parcours2";
+                parcours2.classList.remove('btn-disabled');
+                parcours2Error.style.display = 'none';
+
+                parcours3.href = "https://app.pix.fr/parcours/parcours3";
+                parcours3.classList.remove('btn-disabled');
+                parcours3Error.style.display = 'none';
+            } else {
+                // Désactiver les liens
+                parcours1.href = "#";
+                parcours1.classList.add('btn-disabled');
+                parcours1Error.style.display = 'block';
+
+                parcours2.href = "#";
+                parcours2.classList.add('btn-disabled');
+                parcours2Error.style.display = 'block';
+
+                parcours3.href = "#";
+                parcours3.classList.add('btn-disabled');
+                parcours3Error.style.display = 'block';
+            }
+        }
+
+        // Exécuter les vérifications au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            checkReferer();
+            updateLinks();
+        });
+    </script>
 </body>
 </html>
