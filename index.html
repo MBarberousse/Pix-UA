@@ -483,15 +483,18 @@
 
     <!-- Script pour vérifier le Referer et activer les liens -->
     <script>
+           // Code de test pour vérifier le Referer
+    const referer = document.referrer;
+    alert("Referer: " + referer); // Affiche le Referer dans une boîte de dialogue
         // Domaine autorisé
-        const DOMAINE_AUTORISE = "univ-angers.fr";
+        const DOMAINE_AUTORISE = "moodle.univ-angers.fr";
 
         // Vérifier si l'utilisateur provient du domaine autorisé
         function checkReferer() {
             const referer = document.referrer;
             if (referer.includes(DOMAINE_AUTORISE)) {
                 // Définir un cookie valide 24h
-                document.cookie = "provenance=univ-angers; path=/; max-age=86400; SameSite=Lax";
+                document.cookie = "provenance=moodle.univ-angers; path=/; max-age=86400; SameSite=Lax";
                 return true;
             }
             return false;
