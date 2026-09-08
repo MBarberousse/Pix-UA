@@ -495,17 +495,16 @@
         // Domaine autorisé
         const DOMAINE_AUTORISE = "univ-angers.fr";
 
-        // Vérifier si l'utilisateur provient du domaine autorisé
-        function checkReferer() {
-            const referer = document.referrer;
-            console.log("Referer détecté : " + referer);
-            if (referer.includes(DOMAINE_AUTORISE)) {
-                // Définir un cookie valide 24h
-                document.cookie = "provenance=univ-angers; path=/; max-age=86400; SameSite=Lax";
-                return true;
-            }
-            return false;
-        }
+// Remplacez la condition de vérification du referer par une expression régulière
+function checkReferer() {
+    const referer = document.referrer;
+    console.log("Referer détecté : " + referer);
+    if (/univ-angers\.fr/.test(referer)) { // Vérifie si le referer contient "univ-angers.fr"
+        document.cookie = "provenance=univ-angers; path=/; max-age=86400; SameSite=Lax";
+        return true;
+    }
+    return false;
+}
 
         // Vérifier si le cookie existe
         function checkCookie() {
