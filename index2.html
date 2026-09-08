@@ -72,9 +72,7 @@
             width: auto;
         }
 
-        .logo-ua {
-
-        }
+        .logo-ua {}
 
         .logo-pix {
             height: 80px;
@@ -282,6 +280,16 @@
             margin-top: 10px;
         }
 
+        /* Style pour l'image des parcours */
+        .parcours-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
         @media (max-width: 768px) {
             .logos {
                 flex-direction: column;
@@ -340,9 +348,11 @@
                 <h2>Parcours disponibles après inscription</h2>
                 <p><strong>Astuce</strong> : Votre compte Pix vous suit tout au long de votre vie. Utilisez une adresse mail pérenne pour le créer (pas nécessairement votre adresse universitaire). Vous pouvez également suivre ces parcours depuis un compte Pix existant.</p>
 
+                <!-- Image décrivant les parcours possibles -->
+                <img src="parcours.png" alt="Programme personnalisé de modules d'apprentissage IA" class="parcours-image">
+
                 <article class="card">
-                    <h3>🔍 Parcours "Peut-on faire confiance aux IA génératives ?"</h3>
-                    <p>Un parcours pour questionner les limites de l'intelligence artificielle générative : deepfakes, hallucinations, biais... Apprenez à exercer votre esprit critique face aux contenus générés par les IA.</p>
+                    <h3>🔍 Parcours "Comprendre le fonctionnement de l'intelligence artificielle"</h3>
                     <a id="parcours1" href="#" target="_blank" class="btn btn-disabled">Accéder au parcours</a>
                     <p id="parcours1-error" class="access-denied">Ce lien est réservé aux agents de l'Université d'Angers.</p>
                 </article>
@@ -355,8 +365,7 @@
                 </article>
 
                 <article class="card">
-                    <h3>🧠 Parcours "Décrypter le fonctionnement et les enjeux de l'IA"</h3>
-                    <p>Comprenez la définition de l'IA, ses domaines d'application, son fonctionnement, et ses enjeux, notamment en matière d'impact environnemental.</p>
+                    <h3>🧠 Parcours "Décrypter les enjeux liés à l'essor des IA génératives"</h3>
                     <a id="parcours3" href="#" target="_blank" class="btn btn-disabled">Accéder au parcours</a>
                     <p id="parcours3-error" class="access-denied">Ce lien est réservé aux agents de l'Université d'Angers.</p>
                 </article>
@@ -489,6 +498,7 @@
         // Vérifier si l'utilisateur provient du domaine autorisé
         function checkReferer() {
             const referer = document.referrer;
+            console.log("Referer détecté : " + referer);
             if (referer.includes(DOMAINE_AUTORISE)) {
                 // Définir un cookie valide 24h
                 document.cookie = "provenance=univ-angers; path=/; max-age=86400; SameSite=Lax";
@@ -502,7 +512,7 @@
             const cookies = document.cookie.split(';');
             for (let cookie of cookies) {
                 const [name, value] = cookie.trim().split('=');
-                if (name === 'provenance' && value === 'moodle.univ-angers.fr') {
+                if (name === 'provenance' && value === 'univ-angers') {
                     return true;
                 }
             }
@@ -522,20 +532,18 @@
             const parcours3Error = document.getElementById('parcours3-error');
 
             if (hasAccess) {
-                // Activer les liens
-                parcours1.href = "https://app.pix.fr/parcours/parcours1";
+                parcours1.href = "https://app.pix.fr/parcours/1";
                 parcours1.classList.remove('btn-disabled');
                 parcours1Error.style.display = 'none';
 
-                parcours2.href = "https://app.pix.fr/parcours/parcours2";
+                parcours2.href = "https://app.pix.fr/parcours/2";
                 parcours2.classList.remove('btn-disabled');
                 parcours2Error.style.display = 'none';
 
-                parcours3.href = "https://app.pix.fr/parcours/parcours3";
+                parcours3.href = "https://app.pix.fr/parcours/3";
                 parcours3.classList.remove('btn-disabled');
                 parcours3Error.style.display = 'none';
             } else {
-                // Désactiver les liens
                 parcours1.href = "#";
                 parcours1.classList.add('btn-disabled');
                 parcours1Error.style.display = 'block';
